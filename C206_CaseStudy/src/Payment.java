@@ -1,6 +1,6 @@
 
 
-public class Payment extends *INSERT mainn JAVA CLASS THINGY HERE*{
+public class Payment extends *INSERT mainn JAVA CLASS THINGY HERE (item)*{
 	private String BidderName;
 
 	public Payment(String PaymentAmount, String PaymentMethod, String BidderName) {
