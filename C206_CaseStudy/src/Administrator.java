@@ -39,3 +39,4 @@ public class Administrator {
         System.out.println("Auction has been created.");
     }
 }
+
