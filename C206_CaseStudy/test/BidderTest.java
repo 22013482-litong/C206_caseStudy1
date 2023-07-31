@@ -7,12 +7,7 @@ public class BidderTest {
 		private String dueDate;
 		private boolean isAvailable;
 
-		public Item(String assetTag, String description) {
-			this.assetTag = assetTag;
-			this.description = description;
-			this.dueDate = "";
-			this.isAvailable = true;
-		}
+		
 		public String toString() {
 			
 			// Write your codes here

@@ -5,6 +5,10 @@ public class C206_CaseStudy {
 
 	private static final int OPTION_QUIT = 2;
 	
+	public C206_CaseStudy(String paymentAmount, String paymentMethod) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static void main(String[] args) {
 		
 		int option = 0;
