@@ -21,7 +21,7 @@ public class C206_CaseStudy {
 
 		if (option == 1) {
 		
-	
+
 		}
 	}
 		
