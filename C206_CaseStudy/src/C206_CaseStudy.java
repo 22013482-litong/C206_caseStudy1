@@ -26,9 +26,7 @@ public class C206_CaseStudy {
                 //create account
             } else if (option == 2) {
                 login();
-            } else if (option == 3) {
-                adminMenu();
-            }
+            }    
         }
     }
 
@@ -36,8 +34,7 @@ public class C206_CaseStudy {
         C206_CaseStudy.setHeader("ONLINE AUCTION APP");
         System.out.println("1. Create Account");
         System.out.println("2. Log In");
-        System.out.println("3. Administrator Menu");
-        System.out.println("4. Quit");
+        System.out.println("3. Quit");
         Helper.line(80, "-");
     }
 
