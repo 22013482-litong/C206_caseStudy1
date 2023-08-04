@@ -31,7 +31,7 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
-				// TODO: Implement create account logic
+				createaccount();
 			} else if (option == 2) {
 				login();
 				
@@ -74,4 +74,9 @@ public class C206_CaseStudy {
 
         System.out.println("Invalid username or password");
     }
+	public static void createaccount() {
+
+		//fill in here
+
+	}
 }
