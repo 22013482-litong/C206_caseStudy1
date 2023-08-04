@@ -4,12 +4,14 @@ import java.util.List;
 public class Administrator {
     private String username;
     private String password;
+    private String role;
     private List<Auction> auctions;
 
 
     public Administrator(String username, String password) {
         this.username = username;
         this.password = password;
+        this.role = "Administrator";
         this.auctions = new ArrayList<>();
     }
 
@@ -25,7 +27,10 @@ public class Administrator {
     public void setPassword(String newPassword) {
         this.password = newPassword;
     }
-
+    
+    public String getRole() {
+        return role;
+    }
    
     public void createAuction(String itemName, String description, double startingPrice, String startDate, String endDate) {
         if (itemName.isEmpty() || description.isEmpty() || startDate.isEmpty() || endDate.isEmpty()) {

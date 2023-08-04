@@ -15,28 +15,23 @@ public class C206_CaseStudy {
 
 	public static void main(String[] args) {
 
-	
+	    auctionList.add(new Auction("Ball Point Pen", "A good pen", 1.50, "4/8/2023", "10/8/2023"));
+	    bidderList.add(new Bidder("bidder1", "password1"));
+	    adminList.add(new Administrator("admin1", "password0"));
 
-		auctionList.add(new Auction("Ball Point Pen", "A good pen", 1.50, "4/8/2023", "10/8/2023"));
+	    int option = 0;
 
-		bidderList.add(new Bidder("bidder1","password1"));
-		
-		adminList.add(new Administrator("admin1","password0"));
-		
-		int option = 0;
+	    while (option != OPTION_QUIT) {
 
-		while (option != OPTION_QUIT) {
+	        C206_CaseStudy.menu();
+	        option = Helper.readInt("Enter an option > ");
 
-			C206_CaseStudy.menu();
-			option = Helper.readInt("Enter an option > ");
-
-			if (option == 1) {
-				createaccount();
-			} else if (option == 2) {
-				login();
-				
-			}
-		}
+	        if (option == 1) {
+	            // Implement create account logic
+	        } else if (option == 2) {
+	            login();
+	        }
+	    }
 	}
 
 	public static void menu() {
@@ -53,27 +48,27 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 	public static void login() {
-        String username = Helper.readString("Enter your username: ");
-        String password = Helper.readString("Enter your password: ");
+	    String username = Helper.readString("Enter your username > ");
+	    String password = Helper.readString("Enter your password > ");
 
-        
-        for (Bidder bidder : bidderList) {
-            if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
-                System.out.println("Login successful");
-                return;
-            }
-        }
+	    for (Bidder bidder : bidderList) {
+	        if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
+	            System.out.println("Login successful");
+	            // Display Bidder menu here
+	            return;
+	        }
+	    }
 
-    
-        for (Administrator admin : adminList) {
-            if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
-                System.out.println("Login successful");
-                return;
-            }
-        }
+	    for (Administrator admin : adminList) {
+	        if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+	            System.out.println("Login successful");
+	            // Display Administrator menu here
+	            return;
+	        }
+	    }
 
-        System.out.println("Invalid username or password");
-    }
+	    System.out.println("Invalid username or password");
+	}
 	public static void createaccount() {
 
 		//fill in here
