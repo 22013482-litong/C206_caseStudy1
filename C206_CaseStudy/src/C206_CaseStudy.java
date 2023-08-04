@@ -1,77 +1,100 @@
 import java.util.ArrayList;
 
-
-
 public class C206_CaseStudy {
+    private static final int OPTION_QUIT = 3;
+    private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
+    private static ArrayList<Bidder> bidderList = new ArrayList<Bidder>();
+    private static ArrayList<Administrator> adminList = new ArrayList<Administrator>();
+    private static Administrator loggedInAdmin = null;
 
-	private static final int OPTION_QUIT = 3;
-	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
-	private static ArrayList<Bidder> bidderList = new ArrayList<Bidder>();
-	private static ArrayList<Administrator> adminList = new ArrayList<Administrator>();
+    public C206_CaseStudy(String paymentAmount, String paymentMethod) {
+    
+    }
 
-	public C206_CaseStudy(String paymentAmount, String paymentMethod) {
-	
-	}
+    public static void main(String[] args) {
+        auctionList.add(new Auction("Ball Point Pen", "A good pen", 1.50, "4/8/2023", "10/8/2023"));
+        bidderList.add(new Bidder("bidder1", "password1"));
+        adminList.add(new Administrator("admin1", "password0"));
 
-	public static void main(String[] args) {
+        int option = 0;
 
-	    auctionList.add(new Auction("Ball Point Pen", "A good pen", 1.50, "4/8/2023", "10/8/2023"));
-	    bidderList.add(new Bidder("bidder1", "password1"));
-	    adminList.add(new Administrator("admin1", "password0"));
+        while (option != OPTION_QUIT) {
+            C206_CaseStudy.menu();
+            option = Helper.readInt("Enter an option > ");
 
-	    int option = 0;
+            if (option == 1) {
+                //create account
+            } else if (option == 2) {
+                login();
+            } else if (option == 3) {
+                adminMenu();
+            }
+        }
+    }
 
-	    while (option != OPTION_QUIT) {
+    public static void menu() {
+        C206_CaseStudy.setHeader("ONLINE AUCTION APP");
+        System.out.println("1. Create Account");
+        System.out.println("2. Log In");
+        System.out.println("3. Administrator Menu");
+        System.out.println("4. Quit");
+        Helper.line(80, "-");
+    }
 
-	        C206_CaseStudy.menu();
-	        option = Helper.readInt("Enter an option > ");
+    public static void setHeader(String header) {
+        Helper.line(80, "-");
+        System.out.println(header);
+        Helper.line(80, "-");
+    }
 
-	        if (option == 1) {
-	            // Implement create account logic
-	        } else if (option == 2) {
-	            login();
-	        }
-	    }
-	}
+    public static void login() {
+        String username = Helper.readString("Enter your username > ");
+        String password = Helper.readString("Enter your password > ");
 
-	public static void menu() {
-		C206_CaseStudy.setHeader("ONLINE AUCTION APP");
-		System.out.println("1. Create Account");
-		System.out.println("2. Log In");
-		System.out.println("3. Quit");
-		Helper.line(80, "-");
-	}
+        for (Bidder bidder : bidderList) {
+            if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
+                System.out.println("Login successful");
+                //bidder menu here
+                return;
+            }
+        }
 
-	public static void setHeader(String header) {
-		Helper.line(80, "-");
-		System.out.println(header);
-		Helper.line(80, "-");
-	}
-	public static void login() {
-	    String username = Helper.readString("Enter your username > ");
-	    String password = Helper.readString("Enter your password > ");
+        for (Administrator admin : adminList) {
+            if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
+                loggedInAdmin = admin;
+                System.out.println("Login successful");
+                adminMenu();
+                return;
+            }
+        }
 
-	    for (Bidder bidder : bidderList) {
-	        if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
-	            System.out.println("Login successful");
-	            // Display Bidder menu here
-	            return;
-	        }
-	    }
+        System.out.println("Invalid username or password");
+    }
 
-	    for (Administrator admin : adminList) {
-	        if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
-	            System.out.println("Login successful");
-	            // Display Administrator menu here
-	            return;
-	        }
-	    }
+    public static void adminMenu() {
+        C206_CaseStudy.setHeader("ADMINISTRATOR MENU");
+        System.out.println("1. Create Auction");
+        System.out.println("2. View Auctions");
+        System.out.println("3. Edit Auction");
+        System.out.println("4. Delete Auction");
+        System.out.println("5. Log Out");
+        Helper.line(80, "-");
 
-	    System.out.println("Invalid username or password");
-	}
-	public static void createaccount() {
+        int option = Helper.readInt("Enter an option > ");
 
-		//fill in here
-
-	}
+        if (option == 1) {
+            //create auction
+        } else if (option == 2) {
+            //view auction
+        } else if (option == 3) {
+            //edit auction
+        } else if (option == 4) {
+            //delete auction
+        } else if (option == 5) {
+            loggedInAdmin = null; 
+            System.out.println("Logged out");
+        } else {
+            System.out.println("Invalid option");
+        }
+    }
 }
