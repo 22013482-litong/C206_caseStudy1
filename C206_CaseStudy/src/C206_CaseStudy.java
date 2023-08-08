@@ -8,9 +8,7 @@ public class C206_CaseStudy {
     private static ArrayList<Administrator> adminList = new ArrayList<Administrator>();
     private static Administrator loggedInAdmin = null;
 
-    public C206_CaseStudy(String paymentAmount, String paymentMethod) {
     
-    }
 
     public static void main(String[] args) {
         auctionList.add(new Auction("Ball Point Pen", "A good pen", 1.50, "4/8/2023", "10/8/2023"));
@@ -55,9 +53,28 @@ public class C206_CaseStudy {
             if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
                 System.out.println("Login successful");
                 //bidder menu here
+                
+                
+                //adding payment here
+                
                 return;
             }
         }
+        
+        ArrayList<Payment> paymentList = new ArrayList<Payment>();
+        paymentList.add(new Payment(100, "Credit Card", "Tsukasa"));
+        
+        
+    		double paymentAmount = Helper.readDouble("Enter payment amount > $");
+    		String paymentMethod = Helper.readString("Enter payment method > ");
+    		String name = Helper.readString("Enter username > ");
+
+    		Payment cc= new Payment(paymentAmount, paymentMethod, name);
+    		
+    		
+    	
+    	
+    	
 
         for (Administrator admin : adminList) {
             if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
