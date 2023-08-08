@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 public class C206_CaseStudy {
     private static final int OPTION_QUIT = 3;
     private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
@@ -30,7 +31,8 @@ public class C206_CaseStudy {
         }
     }
 
-    public static void menu() {
+    
+	public static void menu() {
         C206_CaseStudy.setHeader("ONLINE AUCTION APP");
         System.out.println("1. Create Account");
         System.out.println("2. Log In");
@@ -43,7 +45,8 @@ public class C206_CaseStudy {
         System.out.println(header);
         Helper.line(80, "-");
     }
-
+    
+    
     public static void login() {
         String username = Helper.readString("Enter your username > ");
         String password = Helper.readString("Enter your password > ");
@@ -64,7 +67,7 @@ public class C206_CaseStudy {
                 return;
             }
         }
-
+        
         System.out.println("Invalid username or password");
     }
 
@@ -94,4 +97,5 @@ public class C206_CaseStudy {
             System.out.println("Invalid option");
         }
     }
+    
 }
