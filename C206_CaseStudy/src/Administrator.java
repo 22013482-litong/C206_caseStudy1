@@ -10,7 +10,6 @@ public class Administrator {
         this.password = password;
         this.role = "Administrator";
     }
-
     
     public String getUsername() {
         return username;

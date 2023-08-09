@@ -49,7 +49,6 @@ public class Profile {
     }
 
 
-   
     public boolean changePassword(String oldPassword, String newPassword, String confirmPassword) {
         if (bidder != null && bidder.getPassword().equals(oldPassword)) {
             if (!oldPassword.equals(newPassword) && newPassword.equals(confirmPassword)) {

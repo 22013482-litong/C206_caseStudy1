@@ -212,7 +212,6 @@ public class C206_CaseStudy {
                 break;
             }
         }
-
         if (auctionToRemove != null) {
             auctionList.remove(auctionToRemove);
             System.out.println("Auction successfully deleted");
@@ -220,6 +219,5 @@ public class C206_CaseStudy {
             System.out.println("Auction not found. Deletion not successful.");
         }
     }
-
 
 }

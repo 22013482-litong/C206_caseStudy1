@@ -65,7 +65,6 @@ public class Auction {
 		this.description = description;
 	}
 
-
 	public void setStartingPrice(double startingPrice) {
 		this.startingPrice = startingPrice;
 	}

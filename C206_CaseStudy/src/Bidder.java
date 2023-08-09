@@ -10,7 +10,6 @@ public class Bidder {
           this.password = password;
           this.role = "Bidder";
       }
-
      
       public String getUsername() {
           return username;
