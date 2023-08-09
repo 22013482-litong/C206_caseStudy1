@@ -12,7 +12,9 @@ public class Profile {
         this.admin = admin;
         this.auctions = new ArrayList<>();
     }
-
+    public List<Auction> getAuctions() {
+        return auctions;
+    }
     
     public boolean login(String username, String password) {
         if (bidder != null && bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
@@ -31,20 +33,21 @@ public class Profile {
   
     public void createAuction(String itemName, String description, double startingPrice, String startDate, String endDate) {
         if (admin == null) {
-            System.out.println("You are not authorized to create an auction.");
+            System.out.println("You are not authorized to create an auction");
             return;
         }
 
         if (itemName.isEmpty() || description.isEmpty() || startDate.isEmpty() || endDate.isEmpty()) {
-            System.out.println("Please fill in all the mandatory fields before creating an auction.");
+            System.out.println("Fill in all parameters");
             return;
         }
 
         Auction newAuction = new Auction(itemName, description, startingPrice, startDate, endDate);
         auctions.add(newAuction);
 
-        System.out.println("Auction has been created.");
+        System.out.println("Auction has been created");
     }
+
 
    
     public boolean changePassword(String oldPassword, String newPassword, String confirmPassword) {
@@ -61,7 +64,8 @@ public class Profile {
         }
         return false; 
     }
-
+   
+   
     
     public Bidder getBidder() {
         return bidder;
@@ -70,6 +74,5 @@ public class Profile {
     public Administrator getAdmin() {
         return admin;
     }
-
- 
 }
+    
