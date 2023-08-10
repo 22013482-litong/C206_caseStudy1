@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class C206_CaseStudy {
@@ -54,27 +55,38 @@ public class C206_CaseStudy {
                 System.out.println("Login successful");
                 //bidder menu here
                 
-                
+            }          
                 //adding payment here
-                
+                public static void pay() {
+                    Scanner scanner = new Scanner(System.in);
+
+                    // Prompt the user for payment information
+                    System.out.println("Enter Payment Amount:");
+                    double paymentAmount = scanner.nextDouble();
+                    scanner.nextLine(); // Consume the newline character
+
+                    System.out.println("Enter Payment Method:");
+                    String paymentMethod = scanner.nextLine();
+
+                    System.out.println("Enter Username:");
+                    String name = scanner.nextLine();
+
+                    // Create a Payment instance with user input
+                    Payment payment = new Payment(paymentAmount, paymentMethod, name);
+
+                    // Display payment information using toString()
+                    System.out.println("\nPayment Information:");
+                    System.out.println(payment.toString());
+
+                    // Close the scanner
+                    scanner.close();
+                }{
                 return;
             }
         }
         
-        ArrayList<Payment> paymentList = new ArrayList<Payment>();
-        paymentList.add(new Payment(100, "Credit Card", "Tsukasa"));
-        
-        
-    		double paymentAmount = Helper.readDouble("Enter payment amount > $");
-    		String paymentMethod = Helper.readString("Enter payment method > ");
-    		String name = Helper.readString("Enter username > ");
+       
 
-    		Payment cc= new Payment(paymentAmount, paymentMethod, name);
-    		
-    		
-    	
-    	
-    	
 
         for (Administrator admin : adminList) {
             if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
