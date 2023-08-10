@@ -45,6 +45,7 @@ public class C206_CaseStudy {
         Helper.line(80, "-");
     }
     
+  
     
     public static void login() {
         String username = Helper.readString("Enter your username > ");
@@ -54,39 +55,23 @@ public class C206_CaseStudy {
             if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
                 System.out.println("Login successful");
                 //bidder menu here
-                
-            }          
+               
+                      
                 //adding payment here
-                public static void pay() {
-                    Scanner scanner = new Scanner(System.in);
-
-                    // Prompt the user for payment information
-                    System.out.println("Enter Payment Amount:");
-                    double paymentAmount = scanner.nextDouble();
-                    scanner.nextLine(); // Consume the newline character
-
-                    System.out.println("Enter Payment Method:");
-                    String paymentMethod = scanner.nextLine();
-
-                    System.out.println("Enter Username:");
-                    String name = scanner.nextLine();
-
-                    // Create a Payment instance with user input
-                    Payment payment = new Payment(paymentAmount, paymentMethod, name);
-
-                    // Display payment information using toString()
-                    System.out.println("\nPayment Information:");
-                    System.out.println(payment.toString());
-
-                    // Close the scanner
-                    scanner.close();
-                }{
-                return;
+            }
+            else {
+            	System.out.println("Login failed");
             }
         }
+    }
         
-       
-
+        public static void createPayment(Bidder currentBidder) {
+            double paymentAmount = Helper.readDouble("Enter payment amount: ");
+            String paymentMethod = Helper.readString("Enter payment method: ");
+            Payment payment = new Payment(paymentAmount, paymentMethod, currentBidder.getUsername());
+            System.out.println("Payment created: " + payment);
+        
+        
 
         for (Administrator admin : adminList) {
             if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
