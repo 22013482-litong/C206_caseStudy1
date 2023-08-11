@@ -29,6 +29,7 @@ public class C206_CaseStudyTest {
 		
 		bidderList= new ArrayList<Bidder>();
 		auctionList = new ArrayList<Auction>();
+		
 	}
 		
 	@Test

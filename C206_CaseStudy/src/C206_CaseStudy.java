@@ -77,6 +77,7 @@ public class C206_CaseStudy {
 	    return loginAcc;
     }
 
+    
 
 	public static Administrator loginAsAdministrator() {
     	Administrator loginAcc = null;

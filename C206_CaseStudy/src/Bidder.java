@@ -12,6 +12,7 @@ public class Bidder {
           this.role = "Bidder";
       }
      
+      
       public String getUsername() {
           return username;
       }
