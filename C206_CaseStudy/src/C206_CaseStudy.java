@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 
 
+
+
 public class C206_CaseStudy {
     private static final int OPTION_ADMINLOGIN = 2;
 	private static final int OPTION_CREATE = 1;
-	private static final int OPTION_QUIT = 3;
+	private static final int OPTION_QUIT = 4;
+	private static final int OPTION_BIDDERLOGIN = 3;
     private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
     private static ArrayList<Bidder> bidderList = new ArrayList<Bidder>();
     private static ArrayList<Administrator> adminList = new ArrayList<Administrator>();
@@ -16,7 +19,7 @@ public class C206_CaseStudy {
     public static void main(String[] args) {
     	
     	auctionList.add(new Auction("Lenovo Laptop", "A laptop",1200.10,"12/3/2023","12/4/2023"));
-        bidderList.add(new Bidder("bidder1", "password1"));
+        bidderList.add(new Bidder("bidder2", "password2"));
         adminList.add(new Administrator("admin1", "password0"));
 
         int option = 0;
@@ -29,7 +32,9 @@ public class C206_CaseStudy {
                 //create account
             } else if (option == OPTION_ADMINLOGIN) {
                 loginAsAdministrator();
-            }    
+            } else if (option == OPTION_BIDDERLOGIN)  {
+            	loginAsBidder();
+            }
         }
     }
 
@@ -41,8 +46,9 @@ public class C206_CaseStudy {
 
 	public static void loginMeu() {
 		System.out.println("1. Create Account");
-        System.out.println("2. Log In");
-        System.out.println("3. Quit");
+        System.out.println("2. Log In admin");
+        System.out.println("3. Log In Bidder");
+        System.out.println("4. Quit");
 	}
 
     public static void setHeader(String header) {
@@ -61,13 +67,18 @@ public class C206_CaseStudy {
 	        	loginAcc = bidder;
 	        	Helper.line(80,"-");
 	        	System.out.println("Login successful");
+	        	bidderMenu();
 	            //bidder menu here
 	        }
+	        else {
+           	 System.out.println("Invalid username or password");
+           }
 	    }
 	    return loginAcc;
     }
 
-    public static Administrator loginAsAdministrator() {
+
+	public static Administrator loginAsAdministrator() {
     	Administrator loginAcc = null;
         String username = Helper.readString("Enter your username > ");
         String password = Helper.readString("Enter your password > ");
@@ -87,8 +98,135 @@ public class C206_CaseStudy {
         }
         return loginAcc;
     }
+	
+	public static void BidderMenu() {
+	       
+    	C206_CaseStudy.setHeader("BIDDER MENU");
+        BidderMenu();
+        Helper.line(80, "-");
 
-    public static void adminMenu() {
+        int option = Helper.readInt("Enter an option > ");
+        if (option == 1) {
+            //add bidder
+        	Bidder Bidder1 = inputBidder();
+			C206_CaseStudy.addBidder(bidderList, Bidder1);
+			System.out.println();
+			System.out.println("new bidder added successfully");
+
+        } else if (option == 2) {
+            //view bidder
+        	viewBidder(bidderList);
+        } else if (option == 3) {
+            //edit bidder
+        	editBidder(bidderList);
+        } else if (option == 4) {
+            //delete bidder
+        	deleteBidder(bidderList);
+        } else if (option == 5) {
+            
+            System.out.println("Logged out");
+            return;
+        } else {
+            System.out.println("Invalid option");
+        }
+        BidderMenu();
+
+    }
+
+	private static Bidder inputBidder() {
+		// TODO Auto-generated method stub
+		String username = Helper.readString("Enter username > ");
+  		String password = Helper.readString("Enter password > ");
+  		
+  		Bidder b= new Bidder(username, password);
+  		return b;
+	}
+    public static  void addBidder(ArrayList<Bidder> bidderList, Bidder b) {
+		// TODO Auto-generated method stub
+    	Bidder bidder;
+  		for(int i = 0; i < bidderList.size(); i++) {
+  			bidder = bidderList.get(i);
+  			if (bidder.getUsername().equalsIgnoreCase(bidder.getUsername()));	
+  			return;
+  		}
+  		bidderList.add(b);
+	}
+    public static String retrieveAllBidder(ArrayList<Bidder> BidderList) {
+		String output = "";
+		
+		for (int i = 0; i < BidderList.size(); i++) {
+			output += String.format("%-10s %-30s  %-10s \n", BidderList.get(i).getUsername(),
+					BidderList.get(i).getPassword(), 
+					BidderList.get(i).getRole());
+		}
+		return output;
+	}
+    
+    private static void viewBidder(ArrayList<Bidder> BidderList) {
+    	// TODO Auto-generated method stub
+    	C206_CaseStudy.setHeader("BIDDER LIST");
+		String output = String.format("%-10s %-30s %-10s \n", "USERNAME", "PASSWORD",
+				"ROLE");
+		output += retrieveAllBidder(BidderList);	
+		System.out.println(output);
+	}
+    	
+    private static void editBidder(ArrayList<Bidder> bidderList) {
+    	// TODO Auto-generated method stub
+    	viewBidder(bidderList);
+		
+		int id = Helper.readInt("Enter the ID of a bidder to edit > ");
+		
+		String newUserName = Helper.readString("Enter the new  Username > ");
+		String newPassword = Helper.readString("Enter the new password > ");
+		String newRole = Helper.readString("Enter the new role > ");
+	
+		
+		for (int i = 0; i < bidderList.size(); i++) {
+			if (id == auctionList.get(i).getId()){			
+				bidderList.get(i).setUsername(newUserName);
+				bidderList.get(i).setPassword(newPassword);
+				bidderList.get(i).setRole(newRole);
+				
+				
+				System.out.println("bidder successfully updated");
+			}
+		}
+    } 
+    
+    public static boolean doDeleteBidder(ArrayList<Bidder> BidderList,String username) {
+		boolean isDeleted = false;
+
+		if (username.isEmpty())
+			return false;
+		
+		for (int i = 0; i < BidderList.size(); i++) {
+			if (username.equalsIgnoreCase(BidderList.get(i).getUsername())) {
+				isDeleted = true;
+				
+			}
+		}
+		return isDeleted;
+		
+	}
+
+	private static void deleteBidder(ArrayList<Bidder> bidderList) {
+		// TODO Auto-generated method stub
+		C206_CaseStudy.viewBidder(bidderList);
+		String username = Helper.readString("Enter username > ");
+		Boolean isDeleted = doDeleteBidder(bidderList, username);
+		
+		if (isDeleted == false) {
+			System.out.println("Incorrect username");
+		} else {
+			System.out.println("bidder " + username + " is deleted ");
+		}
+	}
+		
+
+
+
+	public static void adminMenu() {
        
     	C206_CaseStudy.setHeader("ADMINISTRATOR MENU");
         adminMeu();
@@ -120,6 +258,15 @@ public class C206_CaseStudy {
         }
         adminMenu();
 
+    }
+    private static void bidderMenu() {
+    	// TODO Auto-generated method stub
+    	System.out.println("1. add bidder");
+        System.out.println("2. View bidder");
+        System.out.println("3. Edit bidder");
+        System.out.println("4. Delete Auction");
+        System.out.println("5. Log Out");
+    	
     }
 
 	public static void adminMeu() {

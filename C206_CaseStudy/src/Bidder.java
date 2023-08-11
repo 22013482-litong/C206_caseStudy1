@@ -3,6 +3,7 @@ public class Bidder {
       private String username;
       private String password;
       private String role;
+      
 
       
       public Bidder(String username, String password) {
@@ -15,7 +16,15 @@ public class Bidder {
           return username;
       }
      
-      public String getPassword() {
+      public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getPassword() {
           return password;
       }
 

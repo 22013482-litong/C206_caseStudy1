@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -9,7 +10,10 @@ import org.junit.Test;
 public class C206_CaseStudyTest {
 	private Auction a1; 
 	private Auction a2;
+	private Bidder b1;
+	private Bidder b2;
 	private ArrayList<Auction> auctionList;
+	private ArrayList<Bidder> bidderList;
 	
 	public C206_CaseStudyTest() {
 		super();
@@ -20,12 +24,53 @@ public class C206_CaseStudyTest {
 	public void setUp() throws Exception {
 		a1 = new Auction("Lenovo Laptop", "A laptop", 1200.10,"12/3/2023","12/4/2023"); 
 		a2 = new Auction("Logitech Mouse","A mouse",12.90,"12/4/2023","12/5/2023");
+		b1 = new Bidder("bidder1","password1");
+		b2 = new Bidder("bidder2","password2");
 		
-		
-		 auctionList = new ArrayList<Auction>();
-	
-	
+		bidderList= new ArrayList<Bidder>();
+		auctionList = new ArrayList<Auction>();
 	}
+		
+	@Test
+	public void addbidder() {
+		// Item list is not null and it is empty
+		assertNotNull("Test if there is valid bidder arraylist to add to", bidderList);
+		
+		//Given an empty list, after adding 1 item, the size of the list is 1
+		C206_CaseStudy.addBidder(bidderList, b1);		
+		assertEquals("Test that the Bidder arraylist size is 1.", 1, bidderList.size());
+		assertSame("Test that Bidder is added", b1, bidderList.get(0));
+		
+		//Given an empty list, after adding 2 item, the size of the list is 2
+		C206_CaseStudy.addBidder(bidderList, b2);		
+		assertEquals("Test that the Bidder arraylist size is 2.", 1, bidderList.size());
+		assertSame("Test that Bidder is added", b2, bidderList.get(1));
+	}
+	
+	@Test
+	public void testRetrieveAllBidder() {
+		// Test if Item list is not null but empty -boundary
+		assertNotNull("Test if there is valid Bidder arraylist to retrieve item", bidderList);
+		
+		//test if the list of Auction retrieved from the SourceCentre is empty - boundary
+		String allBidder= (C206_CaseStudy.retrieveAllBidder(bidderList));
+		String testOutput = "";
+		assertEquals("Check that ViewAllBidderlist", testOutput, allBidder);
+		
+		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
+		C206_CaseStudy.addBidder(bidderList, b1);
+		C206_CaseStudy.addBidder(bidderList, b2);
+		assertEquals("Test that Bidder arraylist size is 2", 2, bidderList.size());
+		
+		//test if the expected output string same as the list of Auction retrieved from the SourceCentre	
+		allBidder= C206_CaseStudy.retrieveAllBidder(bidderList);
+		testOutput = String.format("%-10s %-30s\n", "Bidder1", "password1");
+		testOutput += String.format("%-10s %-30s\n", "Bidder2", "password2");
+	
+		assertEquals("Test that ViewAllBidderlist", testOutput, allBidder);
+		
+	}
+	
 	@Test
 	public void addAuction() {
 		// Item list is not null, so that can add a new item - boundary
