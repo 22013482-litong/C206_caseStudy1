@@ -1,4 +1,4 @@
-public class Payment extends C206_CaseStudy {
+public class Payment{
     private double paymentAmount;
     private String paymentMethod;
     private String username;
