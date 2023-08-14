@@ -55,42 +55,75 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void testAddPayment() {
-		// Item list is not null, so that can add a new item - boundary
-		assertNotNull("Check if there is valid paymentList arraylist to add to", paymentList);
-		
-		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
-		C206_CaseStudy.addPayment(paymentList, p1);		
-		assertEquals("Test that the Payment arraylist size is 1.", 1, paymentList.size());
-		assertSame("Test that Payment is added", b1, paymentList.get(0));
-		
-		//The item just added is as same as the first item of the list
-		C206_CaseStudy.addPayment(paymentList, p1);
-		assertEquals("Check that Payment arraylist size is 1", 1, paymentList.size());
-		assertSame("Check that Payment is added", p1, paymentList.get(0));
+	public void AddPayment() {
+	    // Ensure the initial paymentList is empty
+	    assertEquals("Test that paymentList is initially empty", 0, paymentList.size());
+
+	    // Given an empty list, after adding 1 item, the size of the list is 1 - normal
+	    C206_CaseStudy.addPayment(paymentList, p1);
+	    assertEquals("Test that the Payment arraylist size is 1.", 1, paymentList.size());
+	    assertSame("Test that Payment is added", p1, paymentList.get(0));
+
+	    // Add another payment to the list
+	    C206_CaseStudy.addPayment(paymentList, p2);
+	    assertEquals("Test that the Payment arraylist size is 2.", 2, paymentList.size());
+	    assertSame("Test that Payment is added", p2, paymentList.get(1));
 	}
+	
+	@Test
+	public void RetrieveAllPayment() {
+	    // Ensure there is a valid Payment ArrayList to retrieve items
+	    assertNotNull("Test if there is a valid Payment ArrayList to retrieve items", paymentList);
+
+	    // Add payments to the list
+	    paymentList.add(p1);
+	    paymentList.add(p2);
+
+	    // Check that the Payment ArrayList size is 2 after adding the payments
+	    assertEquals("Test that Payment ArrayList size is 2", 2, paymentList.size());
+
+	    // Get the expected output based on the payments added to the list
+	    String expectedOutput = String.format("%-15s %-15s %-15s\n", "Amount", "Payment Method", "Username");
+	    expectedOutput += String.format("%-15.2f %-15s %-15s\n", 1500.10, "Credit Card", "Snorlax");
+	    expectedOutput += String.format("%-15.2f %-15s %-15s\n", 30.10, "Bank Transfer", "Spacey");
+
+	    // Retrieve all payments from the list
+	    String allPayments = C206_CaseStudy.retrieveAllPayment(paymentList);
+
+	    // Print the expected and actual outputs for comparison
+	    System.out.println("Expected Output:\n" + expectedOutput);
+	    System.out.println("Actual Output:\n" + allPayments);
+
+	    // Check that the retrieved payments match the expected output
+	    assertEquals("Test that ViewAllPayments", expectedOutput, allPayments);
+	}
+	
 	@Test
 	public void testRetrieveAllBidder() {
-		// Test if Item list is not null but empty -boundary
-		assertNotNull("Test if there is valid Bidder arraylist to retrieve item", bidderList);
-		
-		//test if the list of Auction retrieved from the SourceCentre is empty - boundary
-		String allBidder= (C206_CaseStudy.retrieveAllBidder(bidderList));
-		String testOutput = "";
-		assertEquals("Check that ViewAllBidderlist", testOutput, allBidder);
-		
-		//Given an empty list, after adding 2 items, test if the size of the list is 2 - normal
-		C206_CaseStudy.addBidder(bidderList, b1);
-		C206_CaseStudy.addBidder(bidderList, b2);
-		assertEquals("Test that Bidder arraylist size is 2", 2, bidderList.size());
-		
-		//test if the expected output string same as the list of Auction retrieved from the SourceCentre	
-		allBidder= C206_CaseStudy.retrieveAllBidder(bidderList);
-		testOutput = String.format("%-10s %-30s\n", "Bidder1", "password1");
-		testOutput += String.format("%-10s %-30s\n", "Bidder2", "password2");
-	
-		assertEquals("Test that ViewAllBidderlist", testOutput, allBidder);
-		
+	    // Ensure there is a valid Bidder ArrayList to retrieve items
+	    assertNotNull("Test if there is a valid Bidder ArrayList to retrieve items", bidderList);
+
+	    // Add bidders to the list
+	    C206_CaseStudy.addBidder(bidderList, b1);
+	    C206_CaseStudy.addBidder(bidderList, b2);
+
+	    // Check that the Bidder ArrayList size is 2 after adding the bidders
+	    assertEquals("Test that Bidder ArrayList size is 2", 2, bidderList.size());
+
+	    // Get the expected output based on the bidders added to the list
+	    String expectedOutput = String.format("%-15s %-15s\n", "Username", "Password");
+	    expectedOutput += String.format("%-15s %-15s\n", "bidder1", "password1");
+	    expectedOutput += String.format("%-15s %-15s\n", "bidder2", "password2");
+
+	    // Retrieve all bidders from the list
+	    String allBidders = C206_CaseStudy.retrieveAllBidder(bidderList);
+
+	    // Print the expected and actual outputs for comparison
+	    System.out.println("Expected Output:\n" + expectedOutput);
+	    System.out.println("Actual Output:\n" + allBidders);
+
+	    // Check that the retrieved bidders match the expected output
+	    assertEquals("Test that ViewAllBidders", expectedOutput, allBidders);
 	}
 	
 	@Test
