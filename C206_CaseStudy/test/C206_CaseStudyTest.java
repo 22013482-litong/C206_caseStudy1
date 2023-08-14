@@ -40,38 +40,40 @@ public class C206_CaseStudyTest {
 		
 	@Test
 	public void addBidder() {
-		// Item list is not null and it is empty
-		assertNotNull("Test if there is valid bidder arraylist to add to", bidderList);
-		
-		//Given an empty list, after adding 1 item, the size of the list is 1
-		C206_CaseStudy.addBidder(bidderList, b1);		
-		assertEquals("Test that the Bidder arraylist size is 1.", 1, bidderList.size());
-		assertSame("Test that Bidder is added", b1, bidderList.get(0));
-		
-		//Given an empty list, after adding 2 item, the size of the list is 2
-		C206_CaseStudy.addBidder(bidderList, b2);		
-		assertEquals("Test that the Bidder arraylist size is 2.", 1, bidderList.size());
-		assertSame("Test that Bidder is added", b2, bidderList.get(1));
+	    // Item list is not null and it is empty
+	    assertNotNull("Test if there is valid bidder arraylist to add to", bidderList);
+
+	    // Given an empty list, after adding 1 item, the size of the list is 1
+	    C206_CaseStudy.addBidder(bidderList, b1);
+	    assertEquals("Test that the Bidder arraylist size is 1.", 1, bidderList.size());
+	    assertSame("Test that Bidder is added", b1, bidderList.get(0));
+
+	    // Given an empty list, after adding 2 items, the size of the list is 2 (corrected)
+	    C206_CaseStudy.addBidder(bidderList, b2);
+	    assertEquals("Test that the Bidder arraylist size is 2.", 2, bidderList.size());
+	    assertSame("Test that Bidder is added", b2, bidderList.get(1));
 	}
+
 	
 	@Test
-	public void AddPayment() {
+	public void testAddPayment() {
 	    // Ensure the initial paymentList is empty
 	    assertEquals("Test that paymentList is initially empty", 0, paymentList.size());
 
 	    // Given an empty list, after adding 1 item, the size of the list is 1 - normal
 	    C206_CaseStudy.addPayment(paymentList, p1);
 	    assertEquals("Test that the Payment arraylist size is 1.", 1, paymentList.size());
-	    assertSame("Test that Payment is added", p1, paymentList.get(0));
+	    assertEquals("Test that Payment is added", p1, paymentList.get(0));
 
 	    // Add another payment to the list
 	    C206_CaseStudy.addPayment(paymentList, p2);
 	    assertEquals("Test that the Payment arraylist size is 2.", 2, paymentList.size());
-	    assertSame("Test that Payment is added", p2, paymentList.get(1));
+	    assertEquals("Test that Payment is added", p2, paymentList.get(1));
 	}
+
 	
 	@Test
-	public void RetrieveAllPayment() {
+	public void testRetrieveAllPayment() {
 	    // Ensure there is a valid Payment ArrayList to retrieve items
 	    assertNotNull("Test if there is a valid Payment ArrayList to retrieve items", paymentList);
 
@@ -97,6 +99,7 @@ public class C206_CaseStudyTest {
 	    // Check that the retrieved payments match the expected output
 	    assertEquals("Test that ViewAllPayments", expectedOutput, allPayments);
 	}
+
 	
 	@Test
 	public void testRetrieveAllBidder() {
