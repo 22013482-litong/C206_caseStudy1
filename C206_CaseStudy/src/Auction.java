@@ -43,7 +43,6 @@ public class Auction {
 	}
 
 	public String getItemName() {
-
         return itemName;
     }
 
