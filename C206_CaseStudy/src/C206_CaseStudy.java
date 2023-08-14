@@ -29,6 +29,22 @@ public class C206_CaseStudy {
 
             if (option == OPTION_CREATE) {
                 //create account
+            	 int accountType = Helper.readInt("Enter account type (1 for Bidder, 2 for Administrator) > ");
+            	    String username = Helper.readString("Enter username > ");
+            	    String password = Helper.readString("Enter password > ");
+
+            	    if (accountType == 1) {
+            	        Bidder newBidder = new Bidder(username, password);
+            	        bidderList.add(newBidder);
+            	        System.out.println("Bidder account created successfully.");
+            	    } else if (accountType == 2) {
+            	        Administrator newAdmin = new Administrator(username, password);
+            	        adminList.add(newAdmin);
+            	        System.out.println("Administrator account created successfully.");
+            	    } else {
+            	        System.out.println("Invalid account type.");
+            	    }
+            	
             } else if (option == OPTION_ADMINLOGIN) {
                 loginAsAdministrator();
             } else if (option == OPTION_BIDDERLOGIN)  {
@@ -59,13 +75,11 @@ public class C206_CaseStudy {
 
   
     
-    public static void login() {
-        String username = Helper.readString("Enter your username > ");
-    }
+    
     public static Bidder loginAsBidder() {
-    	Bidder loginAcc = null;
+    	Bidder loginAccount = null;
     	String username = Helper.readString("Enter your username > ");
-
+        String password = Helper.readString("Enter your password > ");
 
         for (Bidder bidder : bidderList) {
             if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
@@ -78,6 +92,7 @@ public class C206_CaseStudy {
             else {
             	System.out.println("Login failed");
             }
+            return loginAccount;
         }
     }
     private static Payment inputPayment() {
@@ -111,8 +126,7 @@ public class C206_CaseStudy {
   			return;
   		}
   		paymentList.add(P);
-	
-	
+    	
 
         for (Administrator admin : adminList) {
             if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
@@ -127,7 +141,7 @@ public class C206_CaseStudy {
 
 	    for (Bidder bidder : bidderList) {
 	        if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
-	        	loginAcc = bidder;
+	        	loginAccount = bidder;
 	        	Helper.line(80,"-");
 	        	System.out.println("Login successful");
 	        	bidderMenu();
@@ -180,6 +194,7 @@ public class C206_CaseStudy {
 
         } else if (option == 2) {
             //view bidder
+        	
         	viewBidder(bidderList);
         } else if (option == 3) {
             //edit bidder
