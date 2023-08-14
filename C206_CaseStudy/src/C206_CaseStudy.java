@@ -87,14 +87,17 @@ public class C206_CaseStudy {
                 //bidder menu here
                BidderMenu();
                       
-               inputPayment();
+               
+               loginAccount = bidder;
+               
             }
-            else {
+        }
+            else  {
             	System.out.println("Login failed");
             }
             return loginAccount;
         }
-    }
+    
     private static Payment inputPayment() {
 		// TODO Auto-generated method stub
 		double paymentAmount = Helper.readDouble("Enter payment amount > $");
