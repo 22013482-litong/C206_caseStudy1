@@ -1,9 +1,5 @@
 import java.util.ArrayList;
 
-
-
-
-
 public class C206_CaseStudy {
     private static final int OPTION_ADMINLOGIN = 2;
 	private static final int OPTION_CREATE = 1;
