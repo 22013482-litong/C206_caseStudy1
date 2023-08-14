@@ -38,6 +38,10 @@ public class C206_CaseStudy {
         loginMeu();
         Helper.line(80, "-");
     }
+    
+    public static void login() {
+        String username = Helper.readString("Enter your username > ");
+    }
 
 	public static void loginMeu() {
 		System.out.println("1. Create Account");
@@ -52,12 +56,6 @@ public class C206_CaseStudy {
         Helper.line(80, "-");
     }
     
-
-  
-    
-    public static void login() {
-        String username = Helper.readString("Enter your username > ");
-    }
     public static Bidder loginAsBidder() {
     	Bidder loginAcc = null;
     	String username = Helper.readString("Enter your username > ");
@@ -429,6 +427,5 @@ public class C206_CaseStudy {
             System.out.println("Auction not found. Deletion not successful.");
         }
     }
-
     
 }
