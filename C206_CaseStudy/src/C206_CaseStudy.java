@@ -138,16 +138,16 @@ public class C206_CaseStudy {
         
     }
 
-    public static  void addPayment(ArrayList<Payment> paymentList, Payment P) {
-		// TODO Auto-generated method stub
-    	Payment payment;
-  		for(int i = 0; i < paymentList.size(); i++) {
-  			payment = paymentList.get(i);
-  			if (payment.getUsername().equalsIgnoreCase(payment.getUsername()));	
-  			System.out.println("Payment submitted");
-  			return;
-  		}
-  		paymentList.add(P);
+    public static void addPayment(ArrayList<Payment> paymentList, Payment P) {
+        for (int i = 0; i < paymentList.size(); i++) {
+            Payment payment = paymentList.get(i);
+            if (payment.getUsername().equalsIgnoreCase(P.getUsername())) {
+                System.out.println("Payment submitted");
+                return;
+            }
+        }
+        paymentList.add(P);
+    
     	
 
         
