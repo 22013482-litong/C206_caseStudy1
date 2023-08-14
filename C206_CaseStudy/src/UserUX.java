@@ -16,13 +16,21 @@ public class UserUX {
     	int option = 0;
     	
         while (option != OPTION_QUIT) {
-            UserUX.menu();
+            menu();
+            option = Helper.readInt("Enter your option > ");
 
             if (option == OPTION_CREATE) {
                 UserUX.addAcc();
+                option = Helper.readInt("Enter your option > ");
             } 
-            else if (option == OPTION_LOGIN) {
-                UserUX.login();
+            
+            if (option == OPTION_LOGIN) {
+                login();
+                if (login() == true) {
+                    BidderMenu();
+                    
+                    inputPayment();
+                }
             }
         }
     	
@@ -36,10 +44,10 @@ public class UserUX {
         System.out.println("2. Log In");
         System.out.println("3. Quit");
         Helper.line(80, "-");
-        option = Helper.readInt("Enter your option > ");
     }
     
-    public static void login() {
+    public static boolean login() {
+    	boolean loggedIn = false;
         String username = Helper.readString("Username > ");
         String password = Helper.readString("Password > ");
         
@@ -49,12 +57,13 @@ public class UserUX {
         	{
         		System.out.println("Welcome, " + userList.get(i).getUsername());
         		isFound = true;
+        		loggedIn = true;
         	}
         }	
         if (isFound == false) {
             System.out.println("Wrong username or password, please try again.");
         }
-        
+        return loggedIn;
     }
     
     public static void addAcc() {
