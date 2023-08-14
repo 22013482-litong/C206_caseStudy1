@@ -48,7 +48,13 @@ public class C206_CaseStudy {
             } else if (option == OPTION_ADMINLOGIN) {
                 loginAsAdministrator();
             } else if (option == OPTION_BIDDERLOGIN)  {
-            	loginAsBidder();
+            	Bidder loggedInBidder = loginAsBidder();
+            	 if (loggedInBidder != null) {
+            	        Payment payment = inputPayment();
+            	        paymentList.add(payment);
+            	        System.out.println("Payment added successfully.");
+            	    }
+            	
             }
         }
     }
@@ -77,26 +83,25 @@ public class C206_CaseStudy {
     
     
     public static Bidder loginAsBidder() {
-    	Bidder loginAccount = null;
-    	String username = Helper.readString("Enter your username > ");
+        Bidder loginAccount = null;
+        String username = Helper.readString("Enter your username > ");
         String password = Helper.readString("Enter your password > ");
 
         for (Bidder bidder : bidderList) {
             if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
                 System.out.println("Login successful");
-                //bidder menu here
-               BidderMenu();
-                      
-               
-               loginAccount = bidder;
-               
+                bidderMenu(); 
+                loginAccount = bidder;
+                break; // Exit the loop since login is successful
             }
         }
-            else  {
-            	System.out.println("Login failed");
-            }
-            return loginAccount;
+
+        if (loginAccount == null) {
+            System.out.println("Login failed");
         }
+
+        return loginAccount;
+    }
     
     private static Payment inputPayment() {
 		// TODO Auto-generated method stub
@@ -109,15 +114,17 @@ public class C206_CaseStudy {
 	}
     
     public static String retrieveAllPayment(ArrayList<Payment> paymentList) {
-		String output = "";
-		
-		for (int i = 0; i < paymentList.size(); i++) {
-			output += String.format("%-10s %-30s  %-10s \n", paymentList.get(i).getUsername(),
-					paymentList.get(i).getPaymentAmount(), 
-					paymentList.get(i).getPaymentMethod());
-		}
-		return output;
-	}
+        String output = "";
+
+        for (int i = 0; i < paymentList.size(); i++) {
+            output += String.format("%-10s %-30s %-10s\n",
+                    paymentList.get(i).getUsername(),
+                    paymentList.get(i).getPaymentAmount(),
+                    paymentList.get(i).getPaymentMethod());
+        }
+        return output;
+    }
+    
 
     public static  void addPayment(ArrayList<Payment> paymentList, Payment P) {
 		// TODO Auto-generated method stub
@@ -131,7 +138,8 @@ public class C206_CaseStudy {
   		paymentList.add(P);
     	
 
-        for (Administrator admin : adminList) {
+        
+		for (Administrator admin : adminList) {
             if (admin.getUsername().equals(username) && admin.getPassword().equals(password)) {
                 loggedInAdmin = admin;
                 System.out.println("Login successful");
@@ -144,7 +152,7 @@ public class C206_CaseStudy {
 
 	    for (Bidder bidder : bidderList) {
 	        if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
-	        	loginAccount = bidder;
+	        	loginAcc = bidder;
 	        	Helper.line(80,"-");
 	        	System.out.println("Login successful");
 	        	bidderMenu();
@@ -333,11 +341,14 @@ public class C206_CaseStudy {
             //delete auction
         	deleteAuctions(auctionList);
         } else if (option == 5) {
-            
+            // View Payments
+            System.out.println("Payment List:");
+            String paymentOutput = retrieveAllPayment(paymentList);
+            System.out.println(paymentOutput);
+        } else if (option == 6) {
+            // Log Out
             System.out.println("Logged out");
-            return;
-        } else {
-            System.out.println("Invalid option");
+            
         }
         adminMenu();
 
@@ -358,7 +369,8 @@ public class C206_CaseStudy {
         System.out.println("2. View Auctions");
         System.out.println("3. Edit Auction");
         System.out.println("4. Delete Auction");
-        System.out.println("5. Log Out");
+        System.out.println("5. View all payments");
+        System.out.println("6. Log Out");
 	}
 	
    
