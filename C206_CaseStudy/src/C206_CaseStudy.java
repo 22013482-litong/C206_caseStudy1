@@ -297,27 +297,27 @@ public class C206_CaseStudy {
 	}
     	
     private static void editBidder(ArrayList<Bidder> bidderList) {
-    	// TODO Auto-generated method stub
-    	viewBidder(bidderList);
-		
-		int id = Helper.readInt("Enter the ID of a bidder to edit > ");
-		
-		String newUserName = Helper.readString("Enter the new  Username > ");
-		String newPassword = Helper.readString("Enter the new password > ");
-		String newRole = Helper.readString("Enter the new role > ");
-	
-		
-		for (int i = 0; i < bidderList.size(); i++) {
-			if (id == auctionList.get(i).getId()){			
-				bidderList.get(i).setUsername(newUserName);
-				bidderList.get(i).setPassword(newPassword);
-				bidderList.get(i).setRole(newRole);
-				
-				
-				System.out.println("Bidder successfully updated");
-			}
-		}
-    } 
+        viewBidder(bidderList);
+
+        String name = Helper.readString("Enter the username of a bidder to edit > ");
+
+        String newUserName = Helper.readString("Enter the new Username > ");
+        String newPassword = Helper.readString("Enter the new password > ");
+        String newRole = Helper.readString("Enter the new role (Bidder/Administrator> ");
+
+        for (int i = 0; i < bidderList.size(); i++) {
+            if (name.equals(bidderList.get(i).getUsername())) {
+                bidderList.get(i).setUsername(newUserName);
+                bidderList.get(i).setPassword(newPassword);
+                bidderList.get(i).setRole(newRole);
+
+                System.out.println("Bidder successfully updated");
+                return; // Exit the loop once the bidder is updated
+            }
+        }
+        System.out.println("Bidder not found.");
+    }
+
     
     public static boolean doDeleteBidder(ArrayList<Bidder> BidderList,String username) {
 		boolean isDeleted = false;
@@ -378,6 +378,15 @@ public class C206_CaseStudy {
             // View Payments
         	viewPayment(paymentList);
         } else if (option == 6) {
+            //edit bidder
+        	editBidder(bidderList);
+        } else if (option == 7) {
+            //view bidder
+        	viewBidder(bidderList);
+        } else if (option == 8) {
+        	//view auction
+        	viewAuctions(auctionList);
+        } else if (option == 9) {
             // Log Out
             System.out.println("Logged out");
             
@@ -405,7 +414,10 @@ public class C206_CaseStudy {
         System.out.println("3. Edit Auction");
         System.out.println("4. Delete Auction");
         System.out.println("5. View all payments");
-        System.out.println("6. Log Out");
+        System.out.println("6. Edit Bidder");
+        System.out.println("7. View users");
+        System.out.println("8. View all auctions");
+        System.out.println("9. Log Out");
 	}
 	
    
@@ -519,6 +531,8 @@ public class C206_CaseStudy {
             System.out.println("Payment not found. Deletion not successful.");
         }
     }
+
+	
 
     
 }

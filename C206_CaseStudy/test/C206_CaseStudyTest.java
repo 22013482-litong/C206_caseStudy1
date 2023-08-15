@@ -39,7 +39,7 @@ public class C206_CaseStudyTest {
 	}
 		
 	@Test
-	public void addBidder() {
+	public void testAddBidder() {
 	    // Item list is not null and it is empty
 	    assertNotNull("Test if there is valid bidder arraylist to add to", bidderList);
 
@@ -53,6 +53,69 @@ public class C206_CaseStudyTest {
 	    assertEquals("Test that the Bidder arraylist size is 2.", 2, bidderList.size());
 	    assertSame("Test that Bidder is added", b2, bidderList.get(1));
 	}
+
+	@Test
+	public void testViewBidder() {
+	    // Ensure there is a valid Bidder ArrayList to retrieve items
+	    assertNotNull("Test if there is a valid Bidder ArrayList to retrieve items", bidderList);
+
+	    // Add bidders to the list
+	    C206_CaseStudy.addBidder(bidderList, b1);
+	    C206_CaseStudy.addBidder(bidderList, b2);
+
+	    // Check that the Bidder ArrayList size is 2 after adding the bidders
+	    assertEquals("Test that Bidder ArrayList size is 2", 2, bidderList.size());
+
+	    // Get the expected output based on the bidders added to the list
+	    String expectedOutput = String.format("%-15s %-15s\n", "Username", "Password");
+	    expectedOutput += String.format("%-15s %-15s\n", "bidder1", "password1");
+	    expectedOutput += String.format("%-15s %-15s\n", "bidder2", "password2");
+
+	    // Retrieve all bidders from the list
+	    String allBidders = C206_CaseStudy.retrieveAllBidder(bidderList);
+
+	    // Print the expected and actual outputs for comparison
+	    System.out.println("Expected Output:\n" + expectedOutput);
+	    System.out.println("Actual Output:\n" + allBidders);
+
+	    // Check that the retrieved bidders match the expected output
+	    assertEquals("Test that ViewAllBidders", expectedOutput, allBidders);
+	}
+
+	@Test
+	public void testEditBidder() {
+	    // Ensure there is a valid Bidder ArrayList to edit
+	    assertNotNull("Test if there is a valid Bidder ArrayList to edit", bidderList);
+
+	    // Add bidders to the list
+	    C206_CaseStudy.addBidder(bidderList, b1);
+	    C206_CaseStudy.addBidder(bidderList, b2);
+
+	    // Modify the bidder data using the editBidder method
+	    String updatedPassword = "newPassword";
+	    String username = "bidder1"; // Choose the username of the bidder to edit
+
+	    C206_CaseStudy.editBidder(bidderList, username);
+
+	    // Get the expected output after the edit
+	    String expectedOutput = String.format("%-15s %-15s\n", "Username", "Password");
+	    expectedOutput += String.format("%-15s %-15s\n", username, updatedPassword);
+	    expectedOutput += String.format("%-15s %-15s\n", "bidder2", "password2");
+
+	    // Retrieve all bidders from the list
+	    String allBidders = C206_CaseStudy.retrieveAllBidder(bidderList);
+
+	    // Print the expected and actual outputs for comparison
+	    System.out.println("Expected Output:\n" + expectedOutput);
+	    System.out.println("Actual Output:\n" + allBidders);
+
+	    // Verify that the edited bidder's data matches the expected data
+	    Bidder editedBidder = bidderList.get(0);
+	    assertEquals("Test that edited username matches", username, editedBidder.getUsername());
+	    assertEquals("Test that edited password matches", updatedPassword, editedBidder.getPassword());
+	}
+
+
 
 	
 	@Test
@@ -127,7 +190,7 @@ public class C206_CaseStudyTest {
 	    System.out.println("Expected Output:\n" + expectedOutput);
 	    System.out.println("Actual Output:\n" + allPayment);
 
-	    // Check that the retrieved auctions match the expected output
+	    // Check that the retrieved payment match the expected output
 	    assertEquals("Test that viewPayment", expectedOutput, allPayment);
 	}
 
@@ -138,8 +201,8 @@ public class C206_CaseStudyTest {
 	    assertNotNull("Test if there is a valid Payment ArrayList to delete from", paymentList);
 
 	    // Add payments to the list
-	    paymentList.add(p1);
-	    paymentList.add(p2);
+	    paymentList.add(pay1);
+	    paymentList.add(pay2);
 
 	    // Check that the Payment ArrayList size is 2 after adding the payments
 	    assertEquals("Test that Payment ArrayList size is 2", 2, paymentList.size());
