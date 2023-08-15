@@ -319,7 +319,6 @@ public class C206_CaseStudyTest {
 	a1 = null;
 	a2 = null;
 	auctionList = null;
-
 	 pay1 = null;
      pay2 = null;
      paymentList = null;
