@@ -4,16 +4,26 @@ public class Bidder {
     private String password;
     private String role;
       
+      
+    public Bidder(String username, String password, String role) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
 
-      
-    public Bidder(String username, String password) {
-    	this.username = username;
-        this.password = password;
-        this.role = "Bidder";
-    }
-     
-      
-    public String getUsername() {
+ 
+
+public String toString() {
+		
+		// Write your codes here
+		String userInfo = String.format("%-10s %-30s %-20s",
+				username,
+				password,
+				role);
+		
+		return userInfo;
+	}
+	public String getUsername() {
         return username;
     }
      
