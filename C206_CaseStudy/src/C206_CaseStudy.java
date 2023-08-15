@@ -78,13 +78,7 @@ public class C206_CaseStudy {
         System.out.println(header);
         Helper.line(80, "-");
     }
-<<<<<<< HEAD
-    
 
-  
-    
-=======
->>>>>>> branch 'master' of https://github.com/22013482-litong/C206_caseStudy1.git
     
     public static Bidder loginAsBidder() {
         Bidder loginAccount = null;
@@ -538,7 +532,6 @@ public class C206_CaseStudy {
 
 	
 
-=======
->>>>>>> branch 'master' of https://github.com/22013482-litong/C206_caseStudy1.git
+
     
 }
