@@ -19,7 +19,7 @@ public class C206_CaseStudy {
     	auctionList.add(new Auction("Lenovo Laptop", "A laptop",1200.10,"12/3/2023","12/4/2023"));
         bidderList.add(new Bidder("bidder2", "password2"));
         adminList.add(new Administrator("admin1", "password0"));
-        paymentList.add(new Payment(1600, "Credit Card", "Snorlax"));
+        paymentList.add(new Payment(30.10, "Credit Card", "Snorlax"));
 
         int option = 0;
 

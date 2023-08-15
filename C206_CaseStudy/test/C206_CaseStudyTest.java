@@ -12,8 +12,8 @@ public class C206_CaseStudyTest {
 	private Auction a2;
 	private Bidder b1;
 	private Bidder b2;
-	private Payment p1;
-	private Payment p2;
+	private Payment pay1;
+	private Payment pay2;
 	private ArrayList<Auction> auctionList;
 	private ArrayList<Bidder> bidderList;
 	private ArrayList <Payment> paymentList;
@@ -30,8 +30,8 @@ public class C206_CaseStudyTest {
 		a2 = new Auction("Logitech Mouse","A mouse",12.90,"12/4/2023","12/5/2023");
 		b1 = new Bidder("bidder1","password1");
 		b2 = new Bidder("bidder2","password2");
-		p1 = new Payment (1500.10, "Credit Card", "Snorlax");
-		p2 = new Payment (30.10, "Bank Transfer", "Spacey");
+		pay1 = new Payment (1500.10, "Credit Card", "Snorlax");
+		pay2 = new Payment (30.10, "Bank Transfer", "Spacey");
 		
 		bidderList= new ArrayList<Bidder>();
 		auctionList = new ArrayList<Auction>();
@@ -61,16 +61,15 @@ public class C206_CaseStudyTest {
 	    assertEquals("Test that paymentList is initially empty", 0, paymentList.size());
 
 	    // Given an empty list, after adding 1 item, the size of the list is 1 - normal
-	    C206_CaseStudy.addPayment(paymentList, p1);
+	    C206_CaseStudy.addPayment(paymentList, pay1);
 	    assertEquals("Test that the Payment arraylist size is 1.", 1, paymentList.size());
-	    assertEquals("Test that Payment is added", p1, paymentList.get(0));
+	    assertEquals("Test that Payment is added", pay1, paymentList.get(0));
 
 	    // Add another payment to the list
-	    C206_CaseStudy.addPayment(paymentList, p2);
+	    C206_CaseStudy.addPayment(paymentList, pay2);
 	    assertEquals("Test that the Payment arraylist size is 2.", 2, paymentList.size());
-	    assertEquals("Test that Payment is added", p2, paymentList.get(1));
+	    assertEquals("Test that Payment is added", pay2, paymentList.get(1));
 	}
-
 	
 	@Test
 	public void testRetrieveAllPayment() {
@@ -78,13 +77,13 @@ public class C206_CaseStudyTest {
 	    assertNotNull("Test if there is a valid Payment ArrayList to retrieve items", paymentList);
 
 	    // Add payments to the list
-	    paymentList.add(p1);
-	    paymentList.add(p2);
+	    paymentList.add(pay1);
+	    paymentList.add(pay2);
 
 	    // Check that the Payment ArrayList size is 2 after adding the payments
 	    assertEquals("Test that Payment ArrayList size is 2", 2, paymentList.size());
 
-	    // Get the expected output based on the payments added to the list
+	    // Create the expected output based on the payments added to the list
 	    String expectedOutput = String.format("%-15s %-15s %-15s\n", "Amount", "Payment Method", "Username");
 	    expectedOutput += String.format("%-15.2f %-15s %-15s\n", 1500.10, "Credit Card", "Snorlax");
 	    expectedOutput += String.format("%-15.2f %-15s %-15s\n", 30.10, "Bank Transfer", "Spacey");
@@ -100,6 +99,74 @@ public class C206_CaseStudyTest {
 	    assertEquals("Test that ViewAllPayments", expectedOutput, allPayments);
 	}
 
+
+
+	
+	@Test
+	public void testviewPayment() {
+	    // Ensure there is a valid payment ArrayList to retrieve items
+	    assertNotNull("Test if there is a valid Payment ArrayList to retrieve items", paymentList);
+
+	    // Add two payment to the list
+	    C206_CaseStudy.addPayment(paymentList, pay1);
+	    C206_CaseStudy.addPayment(paymentList, pay2);
+
+	    // Check that the Payment ArrayList size is 2 after adding the payment
+	    assertEquals("Test that Payment ArrayList size is 2", 2, paymentList.size());
+
+	    // Get the expected output based on the payment added to the list
+	    String expectedOutput = String.format("%-10s %-20s %-20s %-20s %-13s %-11s\n",
+	            "1", "Lenovo Laptop", "A laptop", 1200.10, "12/3/2023", "12/4/2023");
+	    expectedOutput += String.format("%-10s %-20s %-20s %-20s %-13s %-11s\n",
+	            "2", "Logitech Mouse", "A mouse", 12.90, "12/4/2023", "12/5/2023");
+
+	    // Retrieve all payment from the list
+	    String allPayment = C206_CaseStudy.retrieveAllPayment(paymentList);
+
+	    // Print the expected and actual outputs for comparison
+	    System.out.println("Expected Output:\n" + expectedOutput);
+	    System.out.println("Actual Output:\n" + allPayment);
+
+	    // Check that the retrieved auctions match the expected output
+	    assertEquals("Test that viewPayment", expectedOutput, allPayment);
+	}
+
+
+	@Test
+	public void testDeletePayment() {
+	    // Ensure there is a valid Payment ArrayList to delete from
+	    assertNotNull("Test if there is a valid Payment ArrayList to delete from", paymentList);
+
+	    // Add payments to the list
+	    paymentList.add(p1);
+	    paymentList.add(p2);
+
+	    // Check that the Payment ArrayList size is 2 after adding the payments
+	    assertEquals("Test that Payment ArrayList size is 2", 2, paymentList.size());
+
+	    // Delete one of the payments
+	    C206_CaseStudy.deletePayment(paymentList); // Deleting the first payment (index 0)
+
+	    // Check that the Payment ArrayList size is now 1 after deleting a payment
+	    assertEquals("Test that Payment ArrayList size is 1 after delete", 1, paymentList.size());
+
+	    // Get the expected output after deleting the payment
+	    String expectedOutput = String.format("%-15s %-15s %-15s\n", "Amount", "Payment Method", "Username");
+	    expectedOutput += String.format("%-15.2f %-15s %-15s\n", 30.10, "Bank Transfer", "Spacey");
+
+	    // Retrieve all payments from the list
+	    String allPayments = C206_CaseStudy.retrieveAllPayment(paymentList);
+
+	    // Print the expected and actual outputs for comparison
+	    System.out.println("Expected Output:\n" + expectedOutput);
+	    System.out.println("Actual Output:\n" + allPayments);
+
+	    // Check that the retrieved payments match the expected output after deleting a payment
+	    assertEquals("Test that ViewAllPayments after delete", expectedOutput, allPayments);
+	}
+
+
+	
 	
 	@Test
 	public void testRetrieveAllBidder() {
@@ -252,6 +319,10 @@ public class C206_CaseStudyTest {
 	a1 = null;
 	a2 = null;
 	auctionList = null;
+
+	 pay1 = null;
+     pay2 = null;
+     paymentList = null;
 	
 	}
 
