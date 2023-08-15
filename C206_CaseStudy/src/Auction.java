@@ -38,12 +38,12 @@ public class Auction {
 		return userInfo;
 	}
    
+    
     public int getId() {
 		return id;
 	}
 
 	public String getItemName() {
-
         return itemName;
     }
 
@@ -86,8 +86,6 @@ public class Auction {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-
-
 
     public void addBid(Bid bid) {
         bids.add(bid);

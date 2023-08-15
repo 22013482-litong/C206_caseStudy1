@@ -1,9 +1,5 @@
 import java.util.ArrayList;
 
-
-
-
-
 public class C206_CaseStudy {
     private static final int OPTION_ADMINLOGIN = 2;
 	private static final int OPTION_CREATE = 1;
@@ -65,6 +61,10 @@ public class C206_CaseStudy {
         loginMeu();
         Helper.line(80, "-");
     }
+    
+    public static void login() {
+        String username = Helper.readString("Enter your username > ");
+    }
 
 	public static void loginMeu() {
 		System.out.println("1. Create Account");
@@ -78,10 +78,13 @@ public class C206_CaseStudy {
         System.out.println(header);
         Helper.line(80, "-");
     }
+<<<<<<< HEAD
     
 
   
     
+=======
+>>>>>>> branch 'master' of https://github.com/22013482-litong/C206_caseStudy1.git
     
     public static Bidder loginAsBidder() {
         Bidder loginAccount = null;
@@ -510,6 +513,7 @@ public class C206_CaseStudy {
             System.out.println("Auction not found. Deletion not successful.");
         }
     }
+<<<<<<< HEAD
     
     public static void deletePayment(ArrayList<Payment> paymentList) {
         viewPayment(paymentList);
@@ -534,5 +538,7 @@ public class C206_CaseStudy {
 
 	
 
+=======
+>>>>>>> branch 'master' of https://github.com/22013482-litong/C206_caseStudy1.git
     
 }
