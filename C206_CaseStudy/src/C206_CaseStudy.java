@@ -20,7 +20,7 @@ public class C206_CaseStudy {
         int option = 0;
 
         while (option != OPTION_QUIT) {
-            C206_CaseStudy.menu();
+            C206_CaseStudy.mainMenu();
             option = Helper.readInt("Enter an option > ");
 
             if (option == OPTION_CREATE) {
@@ -56,22 +56,18 @@ public class C206_CaseStudy {
         }
     }
 
-    public static void menu() {
+    public static void mainMenu() {
         C206_CaseStudy.setHeader("ONLINE AUCTION APP");
-        loginMeu();
+		System.out.println("1. Create Account");
+        System.out.println("2. Log In admin");
+        System.out.println("3. Log In Bidder");
+        System.out.println("4. Quit");
         Helper.line(80, "-");
     }
     
     public static void login() {
         String username = Helper.readString("Enter your username > ");
     }
-
-	public static void loginMeu() {
-		System.out.println("1. Create Account");
-        System.out.println("2. Log In admin");
-        System.out.println("3. Log In Bidder");
-        System.out.println("4. Quit");
-	}
 
     public static void setHeader(String header) {
         Helper.line(80, "-");
@@ -88,7 +84,7 @@ public class C206_CaseStudy {
         for (Bidder bidder : bidderList) {
             if (bidder.getUsername().equals(username) && bidder.getPassword().equals(password)) {
                 System.out.println("Login successful");
-                BidderMenu(); 
+                bidderMenu(); 
                 loginAccount = bidder;
                 break; // Exit the loop since login is successful
             }
@@ -198,10 +194,18 @@ public class C206_CaseStudy {
         return loginAcc;
     }
 	
-	public static void BidderMenu() {
+	public static void bidderMenu() {
 	       
     	C206_CaseStudy.setHeader("BIDDER MENU");
-        bidderMenu();
+    	System.out.println("1. Add bidder");
+        System.out.println("2. View bidder");
+        System.out.println("3. Edit bidder");
+        System.out.println("4. Delete Bidder");
+        System.out.println("5. Add payment");
+        System.out.println("6. View payment");
+        System.out.println("7. Delete payment");
+        System.out.println("8. View all auctions");
+        System.out.println("9. Log Out");
         Helper.line(80, "-");
 
         int option = Helper.readInt("Enter an option > ");
@@ -351,7 +355,15 @@ public class C206_CaseStudy {
 	public static void adminMenu() {
        
     	C206_CaseStudy.setHeader("ADMINISTRATOR MENU");
-        adminMeu();
+		System.out.println("1. Create Auction");
+        System.out.println("2. View Auctions");
+        System.out.println("3. Edit Auction");
+        System.out.println("4. Delete Auction");
+        System.out.println("5. View all payments");
+        System.out.println("6. Edit Bidder");
+        System.out.println("7. View users");
+        System.out.println("8. View all auctions");
+        System.out.println("9. Log Out");;
         Helper.line(80, "-");
 
         int option = Helper.readInt("Enter an option > ");
@@ -391,33 +403,7 @@ public class C206_CaseStudy {
         adminMenu();
 
     }
-    private static void bidderMenu() {
-    
-    	System.out.println("1. Add bidder");
-        System.out.println("2. View bidder");
-        System.out.println("3. Edit bidder");
-        System.out.println("4. Delete Bidder");
-        System.out.println("5. Add payment");
-        System.out.println("6. View payment");
-        System.out.println("7. Delete payment");
-        System.out.println("8. View all auctions");
-        System.out.println("9. Log Out");
-    	
-    }
-
-	public static void adminMeu() {
-		System.out.println("1. Create Auction");
-        System.out.println("2. View Auctions");
-        System.out.println("3. Edit Auction");
-        System.out.println("4. Delete Auction");
-        System.out.println("5. View all payments");
-        System.out.println("6. Edit Bidder");
-        System.out.println("7. View users");
-        System.out.println("8. View all auctions");
-        System.out.println("9. Log Out");
-	}
-	
-   
+ 
     public static Auction inputAuction() {
 	    String itemName = Helper.readString("Enter the item name > ");
 	    String description = Helper.readString("Enter the item description > ");
